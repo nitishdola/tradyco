@@ -11,7 +11,16 @@
 |
 */
 
-Route::get('/', 'AdminAuth\LoginController@login');
+Route::get('/', 'HomepageController@index');
+//Route::get('/admin', 'AdminAuth\LoginController@login');
+
+Route::get('/packages', ['as'=>'user.packages', 'uses'=>'HomepageController@packages']);
+Route::get('/freeuser', ['as'=>'user.free', 'uses'=>'HomepageController@free']);
+Route::post('/freeuser_registered', ['as'=>'user.freereg', 'uses'=>'HomepageController@freereg']);
+Route::get('/paiduser', ['as'=>'user.paid', 'uses'=>'HomepageController@paid']);
+Route::post('/paiduser_payment', ['as'=>'user.paidreg', 'uses'=>'HomepageController@paidreg']);
+Route::post('/paiduser_registered', ['as'=>'user.paymentsel', 'uses'=>'HomepageController@paymentsel']);
+Route::get('/login', ['as'=>'user.login', 'uses'=>'LoginControlller@login']);
 
 Route::group(['prefix' => 'admin'], function () {
   Route::get('/login', 'AdminAuth\LoginController@showLoginForm')->name('login');

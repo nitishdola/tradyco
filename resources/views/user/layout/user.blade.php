@@ -9,7 +9,7 @@
   <title>Tradyco @yield('seo_title')</title>
   
   <!-- PLUGINS CSS STYLE -->
-  <link href="{{ asset('plugins/jquery-ui/jquery-ui.min.css') }}" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet">
   <!-- Bootstrap -->
   <link href="{{ asset('plugins/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
   <!-- Font Awesome -->
@@ -42,6 +42,16 @@
 }
 .btn-primary{
   background: #3B5998;
+}
+.navbar-toggler-icon {
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    vertical-align: middle;
+    content: "";
+    background: no-repeat center center;
+    background-size: 100% 100%;
+    background: url(images/nav-toogle-icon.png);
 }
 </style>
 </head>
@@ -98,8 +108,8 @@
 </footer>
 
   <!-- JAVASCRIPTS -->
-  <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
-  <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
   <script src="{{ asset('plugins/tether/js/tether.min.js') }}"></script>
   <script src="{{ asset('plugins/raty/jquery.raty-fa.js') }}"></script>
   <script src="{{ asset('plugins/bootstrap/dist/js/popper.min.js') }}"></script>

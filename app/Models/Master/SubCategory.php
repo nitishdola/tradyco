@@ -16,8 +16,8 @@ class SubCategory extends Model
     	'category_id' 				=>  'required|exists:categories,id',
     	'sub_category_image' 		=>  'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
     ];
-
-    public function category() {
+public function category() {
         return $this->belongsTo('App\Models\Master\Category', 'category_id');
     }
+    
 }

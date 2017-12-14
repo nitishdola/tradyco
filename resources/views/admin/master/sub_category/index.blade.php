@@ -19,7 +19,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
-                                <th>Cateogry</th>
+                                <th>Category</th>
                                 <th>Sub Category Image</th>
                                 <th>Action</th>
                             </tr>

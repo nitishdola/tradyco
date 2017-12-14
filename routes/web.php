@@ -115,5 +115,33 @@ Route::group(['middleware' => ['web']], function () {
 
 
   });
+  Route::group(['prefix' => 'products'], function () {
+    Route::get('/', [
+        'as' => 'my.products',
+        'uses' => 'User\ProductsController@index'
+    ]);
+
+    Route::get('/create', [
+        'as' => 'product.create',
+        'uses' => 'User\ProductsController@create'
+    ]);
+    Route::post('/create_now', [
+        'as' => 'product.forward',
+        'uses' => 'User\ProductsController@forward'
+    ]);
+
+    Route::post('/save', [
+        'as' => 'product.save',
+        'uses' => 'User\ProductsController@save'
+    ]);
+   Route::delete('/{id}', ['as'=>'product.destroy', 'uses'=>'User\ProductsController@destroy']);
+   Route::get('/{slug}', ['as'=>'product.view', 'uses'=>'User\ProductsController@view']);
+  Route::post('/saved', [
+        'as' => 'photo.save',
+        'uses' => 'User\GalleryController@save'
+    ]);
+Route::delete('photo/{id}', ['as'=>'photo.destroy', 'uses'=>'User\GalleryController@destroy']);
+
+  });
 
 });

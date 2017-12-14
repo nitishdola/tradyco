@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-
+use App\Helpers\UserHelper;
 use DB, Validator, Redirect, Auth;
 
 use Mail;
@@ -85,7 +85,8 @@ class HomepageController extends Controller
 
     public function viewUserDashboard()
     {
-        return view('user.registered.home');
+        $profile_type   = UserHelper::getUserInfo()->type;
+        return view('user.registered.home',compact('profile_type'));
     }
     
         

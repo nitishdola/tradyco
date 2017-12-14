@@ -17,7 +17,8 @@ class UsersController extends Controller
 
     public function editProfile() {
     	$user_info = UserHelper::getUserInfo();
-    	return view('user.registered.edit_profile', compact('user_info'));
+        $profile_type   = UserHelper::getUserInfo()->type;
+    	return view('user.registered.edit_profile', compact('user_info','profile_type'));
     }
 
     public function updateProfile(Request $request) {

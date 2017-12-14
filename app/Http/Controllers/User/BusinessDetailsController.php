@@ -20,7 +20,9 @@ class BusinessDetailsController extends Controller
     public function index() {
     	$user_info = UserHelper::getUserInfo();
     	$business_details = BusinessDetail::where('user_id', $user_info->id)->first();
-    	return view('user.registered.business_details.index', compact('business_details'));
+        $count = BusinessDetail::where('user_id', $user_info->id)->count();
+        $profile_type   = UserHelper::getUserInfo()->type;
+    	return view('user.registered.business_details.index', compact('business_details','profile_type','count'));
     }
 
     public function create() {

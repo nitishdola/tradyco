@@ -234,7 +234,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
 
         'Helper' => App\Helpers\Helper::class,
-
+        'UserHelper' => App\Helpers\UserHelper::class,
     ],
 
 ];

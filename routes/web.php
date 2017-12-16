@@ -11,16 +11,21 @@
 |
 */
 
-Route::get('/', 'HomepageController@index');
-//Route::get('/admin', 'AdminAuth\LoginController@login');
 
-Route::get('/packages', ['as'=>'user.packages', 'uses'=>'HomepageController@packages']);
-Route::get('/freeuser', ['as'=>'user.free', 'uses'=>'HomepageController@free']);
-Route::post('/freeuser_registered', ['as'=>'user.freereg', 'uses'=>'HomepageController@freereg']);
-Route::get('/paiduser', ['as'=>'user.paid', 'uses'=>'HomepageController@paid']);
-Route::post('/paiduser_payment', ['as'=>'user.paidreg', 'uses'=>'HomepageController@paidreg']);
-Route::post('/paiduser_registered', ['as'=>'user.paymentsel', 'uses'=>'HomepageController@paymentsel']);
-Route::get('/login', ['as'=>'user.login', 'uses'=>'LoginControlller@login']);
+
+
+Route::get('/', 'HomepageController@index');
+  //Route::get('/admin', 'AdminAuth\LoginController@login');
+
+  Route::get('/packages', ['as'=>'user.packages', 'uses'=>'HomepageController@packages']);
+  Route::get('/freeuser', ['as'=>'user.free', 'uses'=>'HomepageController@free']);
+  Route::post('/freeuser_registered', ['as'=>'user.freereg', 'uses'=>'HomepageController@freereg']);
+  Route::get('/paiduser', ['as'=>'user.paid', 'uses'=>'HomepageController@paid']);
+  Route::post('/paiduser_payment', ['as'=>'user.paidreg', 'uses'=>'HomepageController@paidreg']);
+  Route::post('/paiduser_registered', ['as'=>'user.paymentsel', 'uses'=>'HomepageController@paymentsel']);
+
+  //Route::auth();
+  
 
 Route::group(['prefix' => 'admin'], function () {
   Route::get('/login', 'AdminAuth\LoginController@showLoginForm')->name('login');
@@ -50,7 +55,7 @@ Route::group(['prefix' => 'employee'], function () {
   Route::get('/password/reset/{token}', 'EmployeeAuth\ResetPasswordController@showResetForm');
 });
 
-Route::group(['prefix' => 'customer'], function () {
+/*Route::group(['prefix' => 'customer'], function () {
   Route::get('/login', 'CustomerAuth\LoginController@showLoginForm')->name('login');
   Route::post('/login', 'CustomerAuth\LoginController@login');
   Route::post('/logout', 'CustomerAuth\LoginController@logout')->name('logout');
@@ -62,4 +67,33 @@ Route::group(['prefix' => 'customer'], function () {
   Route::post('/password/reset', 'CustomerAuth\ResetPasswordController@reset')->name('password.email');
   Route::get('/password/reset', 'CustomerAuth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
   Route::get('/password/reset/{token}', 'CustomerAuth\ResetPasswordController@showResetForm');
+});*/
+
+Route::group(['middleware' => ['web']], function () {
+
+  Route::get('/login', ['uses'=>'Auth\LoginController@login']);
+  Route::get('/logout', ['as'=>'user.logout', 'uses'=>'Auth\LoginController@logout']);
+
+  Auth::routes();
+
+  Route::get('/home', ['as'=>'user.home', 'uses'=>'HomepageController@viewUserDashboard']);
+
+  Route::group(['prefix' => 'profile'], function () {
+    Route::get('/', [
+        'as' => 'user.profile.view',
+        'uses' => 'User\UsersController@viewProfile'
+    ]);
+
+    Route::get('/edit', [
+        'as' => 'user.profile.edit',
+        'uses' => 'User\UsersController@editProfile'
+    ]);
+
+    Route::post('/update', [
+        'as' => 'user.profile.update',
+        'uses' => 'User\UsersController@updateProfile'
+    ]);
+
+
+  });
 });

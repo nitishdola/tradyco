@@ -77,7 +77,7 @@
 						</ul>
 						<ul class="navbar-nav ml-auto mt-10">
 							<li class="nav-item">
-								<a style="color:#fff" class="nav-link login-button" href="{{route('user.login')}}">Login</a>
+								<a style="color:#fff" class="nav-link login-button" href="{{route('login')}}">Login</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link add-button" href="{{route('user.packages')}}"><i class="fa fa-plus-circle"></i> Register</a>

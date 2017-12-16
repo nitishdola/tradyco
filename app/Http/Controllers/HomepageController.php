@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-use DB, Validator, Redirect;
+use DB, Validator, Redirect, Auth;
 
 use Mail;
 use App\User;
@@ -15,6 +15,8 @@ use App\User;
 
 class HomepageController extends Controller
 {
+
+    
     public function index()
     {
         return view('user.index');
@@ -78,6 +80,12 @@ class HomepageController extends Controller
         $data['status']  = 1;
         User::create($data);
         return view('user.paidreg')->with('msg','You Have Successfully Registered');
+    }
+
+
+    public function viewUserDashboard()
+    {
+        return view('user.registered.home');
     }
     
         

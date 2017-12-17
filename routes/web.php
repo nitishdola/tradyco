@@ -96,4 +96,24 @@ Route::group(['middleware' => ['web']], function () {
 
 
   });
+
+  Route::group(['prefix' => 'business-details'], function () {
+    Route::get('/', [
+        'as' => 'user.business_details.index',
+        'uses' => 'User\BusinessDetailsController@index'
+    ]);
+
+    Route::get('/create', [
+        'as' => 'user.business_details.create',
+        'uses' => 'User\BusinessDetailsController@create'
+    ]);
+
+    Route::post('/save', [
+        'as' => 'user.business_details.save',
+        'uses' => 'User\BusinessDetailsController@save'
+    ]);
+
+
+  });
+
 });

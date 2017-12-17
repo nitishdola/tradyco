@@ -11,7 +11,7 @@
 <!-- Dashboard Links -->
 <div class="widget user-dashboard-menu">
 	<ul>
-		<li class="active" ><a href=""><i class="fa fa-user"></i> My Ads</a></li>
+		<li class="active" ><a href="{{ route('user.business_details.index') }}"><i class="fa fa-shopping-bag" aria-hidden="true"></i> Business Profile</a></li>
 		<li><a href=""><i class="fa fa-bookmark-o"></i> Favourite Ads <span>5</span></a></li>
 		<li><a href=""><i class="fa fa-file-archive-o"></i>Archived Ads <span>12</span></a></li>
 		<li><a href=""><i class="fa fa-bolt"></i> Pending Approval<span>23</span></a></li>

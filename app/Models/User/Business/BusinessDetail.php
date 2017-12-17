@@ -16,7 +16,7 @@ class BusinessDetail extends Model
     	'business_slug' 	=>  'required|unique:business_details,business_slug',
     	'business_type' 	=>  'required|in:Retailer,Wholesaler,Distributor,Supplier,Manufacturer',
     	'business_email' 	=>  'email',
-        'logo'              =>  'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'logo'              =>  'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
     ];
 
     public static $business_types = ['Retailer' => 'Retailer','Wholesaler' => 'Wholesaler','Distributor' => 'Distributor','Supplier' => 'Supplier','Manufacturer' => 'Manufacturer'];

@@ -5,7 +5,6 @@
 @section('content')
 
 @if($business_details)
-
 @if($profile_type==2)
 <div class="row">
 <div class="col-md-12">
@@ -45,9 +44,6 @@
 		</tr>
 	</tbody>
 </table>
-
-<div class="col-md-2 col-xs-4 pull-right"><a href="{{ route('user.business_details.edit') }}" class="btn btn-main-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Business Details</a></div>
-
 @endif
 @else
 <div class="alert alert-danger">
@@ -56,8 +52,6 @@
 
 <a class="nav-link add-button" href="{{ route('user.business_details.create') }}"><i class="fa fa-plus-circle"></i> Add Business Profile </a>
 @endif
-
-
 
 
 

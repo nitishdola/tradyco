@@ -67,4 +67,47 @@ class BusinessDetailsController extends Controller
 
         return Redirect::route('user.business_details.index')->with(['message' => $message, 'alert-class' => $alert_class]);
     }
+
+    public function edit() {
+
+        $user_info = UserHelper::getUserInfo();
+        $business_details = BusinessDetail::where('user_id', $user_info->id)->first();
+        
+        $business_types = BusinessDetail::$business_types;
+        $profile_type   = UserHelper::getUserInfo()->type;
+        return view('user.registered.business_details.edit', compact('business_types', 'profile_type', 'business_details'));
+    }
+
+    public function update(Request $request) { 
+        $user_info = UserHelper::getUserInfo();
+        $business_details = BusinessDetail::where('user_id', $user_info->id)->first();
+        $id = $business_details->id;
+
+        $business_slug = strtolower(str_replace(' ','-',trim($request->business_name)));
+
+        $data = $request->all();
+
+        $data['business_slug']  = $business_slug;
+        $data['user_id']        = UserHelper::getUserInfo()->id;
+
+        $rules = BusinessDetail::$rules;
+        $rules['business_slug']   = $rules['business_slug'].',' . $id;
+
+        
+        //dd($rules);
+        $validator = Validator::make($data, $rules);
+        if ($validator->fails()) return Redirect::back()->withErrors($validator)->withInput();
+
+        $message = '';
+
+        $business_details->fill($data);
+        if($business_details->save()) {
+            $message .= 'Business Details Updated Successfully !';
+        }else{
+            $message .= 'Unable to update  details !';
+        }
+
+        return Redirect::route('user.business_details.index')->with('message', $message);
+    }
+
 }

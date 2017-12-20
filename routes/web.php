@@ -114,6 +114,17 @@ Route::group(['middleware' => ['web']], function () {
     ]);
 
 
+    Route::get('/edit', [
+        'as' => 'user.business_details.edit',
+        'uses' => 'User\BusinessDetailsController@edit'
+    ]);
+
+    Route::post('/update', [
+        'as' => 'user.business_details.update',
+        'uses' => 'User\BusinessDetailsController@update'
+    ]);
+
+
   });
   Route::group(['prefix' => 'products'], function () {
     Route::get('/', [
